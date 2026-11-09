@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>迷人秀 · 工具总站</title>
+<meta name="description" content="短视频、直播、贴片，一个入口全搞定" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="迷人秀 · 工具总站" />
+<meta property="og:description" content="短视频、直播、贴片，一个入口全搞定" />
+<meta property="og:image" content="https://weald1120.github.io/og-cover.jpg" />
+<meta property="og:image:secure_url" content="https://weald1120.github.io/og-cover.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="800" />
+<meta property="og:image:alt" content="迷人秀工具总站" />
+<meta property="og:url" content="https://weald1120.github.io/" />
+<meta itemprop="name" content="迷人秀 · 工具总站" />
+<meta itemprop="description" content="短视频、直播、贴片，一个入口全搞定" />
+<meta itemprop="image" content="https://weald1120.github.io/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://weald1120.github.io/og-cover.jpg" />
+<link rel="image_src" href="https://weald1120.github.io/og-cover.jpg" />
+
+<style>
+    :root {
+        --ink: #241f18;
+        --ink-2: #4a4238;
+        --muted: #8e8677;
+        --line: rgba(150, 120, 60, .13);
+        --amber: #F0A30A;
+        --amber-lt: #FFC742;
+        --coral: #E0663F;
+        --coral-lt: #F09570;
+        --sage: #6E9E7A;
+        --sage-lt: #9CC19F;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+        font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+        background: #FDFBF5;
+        color: var(--ink);
+        line-height: 1.7;
+        min-height: 100vh;
+        padding: max(28px, env(safe-area-inset-top)) 18px max(36px, env(safe-area-inset-bottom));
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* 背景暖光 */
+    .glow {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background:
+            radial-gradient(58% 42% at 12% -4%, rgba(255, 208, 120, .55), transparent 68%),
+            radial-gradient(52% 40% at 96% 22%, rgba(255, 226, 178, .48), transparent 70%),
+            radial-gradient(62% 46% at 50% 108%, rgba(255, 196, 128, .34), transparent 72%);
+    }
+    .wrap {
+        position: relative; z-index: 1;
+        max-width: 560px; margin: 0 auto;
+        min-height: calc(100dvh - 70px);
+        display: flex; flex-direction: column;
+    }
+
+    /* ---------- 头部 ---------- */
+    .hero { text-align: center; padding: 14px 0 26px; }
+    .pill {
+        display: inline-block;
+        font-size: 12px; font-weight: 600; letter-spacing: .6px;
+        color: #A9761A;
+        background: rgba(255, 246, 226, .9);
+        border: 1px solid rgba(224, 168, 50, .32);
+        padding: 5px 14px; border-radius: 999px;
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 2px 10px rgba(200, 150, 40, .10);
+    }
+    .hero h1 {
+        margin-top: 18px;
+        font-size: clamp(28px, 8.2vw, 38px);
+        font-weight: 800; letter-spacing: -.5px; line-height: 1.28;
+        color: #1E1A14;
+    }
+    .hero h1 em {
+        font-style: normal;
+        background: linear-gradient(100deg, #F0A30A 6%, #FF8A3D 96%);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .hero .sub {
+        margin-top: 12px; font-size: 15px; color: var(--muted); letter-spacing: .2px;
+    }
+
+    /* ---------- 微信名片 ---------- */
+    .wx {
+        display: flex; align-items: center; gap: 12px;
+        margin: 0 0 26px; padding: 12px 16px;
+        background: rgba(255, 255, 255, .74);
+        border: 1px solid rgba(255, 255, 255, .9);
+        border-radius: 18px;
+        box-shadow: 0 8px 26px rgba(160, 120, 40, .10), 0 1px 0 rgba(255, 255, 255, .9) inset;
+        backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    }
+    .wx img {
+        width: 50px; height: 50px; border-radius: 50%; flex: none;
+        object-fit: cover; object-position: center 18%;
+        border: 1.5px solid rgba(240, 163, 10, .45);
+        box-shadow: 0 2px 8px rgba(180, 120, 20, .18);
+    }
+    .wx .info { flex: 1; min-width: 0; }
+    .wx .nm { font-size: 14.5px; font-weight: 700; color: #2A241B; line-height: 1.35; }
+    .wx .id {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 12.5px; color: var(--muted); line-height: 1.4; margin-top: 3px;
+    }
+    .wx .id span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wx .id b { color: var(--ink-2); letter-spacing: .2px; }
+    .wx .cp {
+        flex: none; font-size: 11.5px; font-weight: 600; color: #fff;
+        background: linear-gradient(135deg, var(--amber-lt), var(--amber));
+        padding: 4px 11px; border-radius: 999px; cursor: pointer;
+        box-shadow: 0 2px 8px rgba(220, 145, 0, .30);
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .wx .cp:active { transform: scale(.94); }
+
+    /* ---------- 卡片 ---------- */
+    .cards { display: flex; flex-direction: column; gap: 16px; }
+    .card {
+        position: relative;
+        display: flex; align-items: center; gap: 15px;
+        padding: 20px 18px;
+        text-decoration: none; color: inherit;
+        background: rgba(255, 255, 255, .76);
+        border: 1px solid rgba(255, 255, 255, .95);
+        border-radius: 20px;
+        box-shadow: 0 8px 28px rgba(160, 120, 40, .09), 0 1px 0 rgba(255, 255, 255, .95) inset;
+        backdrop-filter: blur(18px) saturate(1.35); -webkit-backdrop-filter: blur(18px) saturate(1.35);
+        overflow: hidden;
+        transition: transform .22s cubic-bezier(.2,.8,.3,1), box-shadow .22s ease;
+        opacity: 0; transform: translateY(14px);
+    }
+    .card.in { animation: rise .52s cubic-bezier(.2,.8,.3,1) forwards; }
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(160, 120, 40, .15); }
+    .card:active { transform: scale(.985); }
+
+    /* 左侧色条 */
+    .card::before {
+        content: ""; position: absolute; left: 0; top: 18%; bottom: 18%;
+        width: 3.5px; border-radius: 0 4px 4px 0;
+        background: var(--accent, var(--amber));
+        opacity: .85;
+    }
+
+    .ico {
+        flex: none; width: 50px; height: 50px; border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--grad);
+        box-shadow: 0 6px 16px var(--shadow);
+    }
+    .ico svg { width: 25px; height: 25px; stroke: #fff; stroke-width: 1.9; fill: none;
+               stroke-linecap: round; stroke-linejoin: round; }
+
+    .txt { flex: 1; min-width: 0; padding-right: 30px; }
+    .txt b {
+        display: block; font-size: 17px; font-weight: 700; color: #221D16;
+        letter-spacing: .1px; line-height: 1.4;
+    }
+    .txt i {
+        display: block; font-style: normal; font-size: 13px; color: var(--muted);
+        margin-top: 3px; line-height: 1.5;
+    }
+    .arw {
+        position: absolute; right: 15px; top: 50%; margin-top: -12px;
+        width: 24px; height: 24px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(170, 140, 90, .14);
+        transition: background .22s ease, right .22s ease;
+    }
+    .arw svg { width: 13px; height: 13px; stroke: #836C3C; stroke-width: 2.5; fill: none;
+               stroke-linecap: round; stroke-linejoin: round; }
+    .card:hover .arw { background: rgba(170, 140, 90, .24); right: 12px; }
+
+    .c1 { --accent: #F0A30A; --grad: linear-gradient(135deg, #FFCB52, #F0990A); --shadow: rgba(220, 150, 10, .34); }
+    .c2 { --accent: #E0663F; --grad: linear-gradient(135deg, #F59B78, #DE6239); --shadow: rgba(200, 90, 60, .32); }
+    .c3 { --accent: #6E9E7A; --grad: linear-gradient(135deg, #A3C8A6, #6A9A76); --shadow: rgba(90, 140, 100, .30); }
+
+    /* 主推徽标 */
+    .tag {
+        display: inline-block; vertical-align: 2px;
+        margin-left: 7px; padding: 1px 7px 2px;
+        font-size: 10.5px; font-weight: 700; letter-spacing: .3px;
+        color: #fff; border-radius: 6px; line-height: 1.5;
+        background: linear-gradient(135deg, #FF8A3D, #EE6A22);
+        box-shadow: 0 2px 7px rgba(230, 100, 30, .28);
+    }
+
+    /* ---------- 页脚 ---------- */
+    .foot {
+        margin-top: auto; padding-top: 46px; text-align: center;
+        font-size: 12px; color: #A79E8D; line-height: 2;
+    }
+    .foot .ln { width: 34px; height: 1px; background: var(--line); margin: 0 auto 16px; }
+    .foot a { color: #A79E8D; text-decoration: none; border-bottom: 1px dotted rgba(167,158,141,.5); }
+
+    .toast {
+        position: fixed; left: 50%; bottom: 14%; transform: translate(-50%, 8px);
+        background: rgba(32, 28, 22, .93); color: #fff;
+        padding: 11px 20px; border-radius: 12px; font-size: 13.5px;
+        z-index: 9999; opacity: 0; pointer-events: none;
+        transition: opacity .24s ease, transform .24s ease;
+        max-width: 82%; text-align: center;
+        box-shadow: 0 8px 26px rgba(0,0,0,.22);
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 380px) {
+        .card { padding: 15px 15px; gap: 12px; }
+        .ico { width: 44px; height: 44px; border-radius: 14px; }
+        .ico svg { width: 22px; height: 22px; }
+        .txt b { font-size: 16px; }
+        .txt i { font-size: 12.5px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .card { opacity: 1; transform: none; animation: none !important; }
+        .card, .arw, .wx .cp { transition: none; }
+    }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<main class="wrap">
+
+    <header class="hero">
+        <span class="pill">迷人秀 · 代理商专用</span>
+        <h1>照着做<em>就能起号</em></h1>
+        <p class="sub">短视频、直播、贴片，一个入口全搞定</p>
+    </header>
+
+    <div class="wx">
+        <img src="data:image/jpeg;base64,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" alt="魏杰微信" />
+        <div class="info">
+            <div class="nm">迷人秀流量培训教练-魏杰</div>
+            <div class="id"><span>微信号：<b>yueboguoji1238</b></span><span class="cp" id="cpBtn">复制</span></div>
+        </div>
+    </div>
+
+    <div class="cards">
+
+        <a class="card c1" href="https://weald1120.github.io/mrx-sop/">
+            <span class="ico">
+                <svg viewBox="0 0 24 24"><path d="M9 5h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M7 9H6a2 2 0 0 0-2 2v9"/><path d="M11 9h6M11 13h6M11 17h3"/></svg>
+            </span>
+            <span class="txt">
+                <b>起号 SOP<span class="tag">先看这个</span></b>
+                <i>7 个模块，从准备账号到引流成交</i>
+            </span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="card c2" href="https://weald1120.github.io/mrx/">
+            <span class="ico">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10.2 8.8l5 3.2-5 3.2z"/></svg>
+            </span>
+            <span class="txt">
+                <b>对标视频</b>
+                <i>爆款案例库，看到什么就模仿什么</i>
+            </span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="card c3" href="https://weald1120.github.io/tiepian/">
+            <span class="ico">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 15l4.5-4.5a2 2 0 0 1 2.8 0L15 15"/><circle cx="15.5" cy="8.5" r="1.4"/></svg>
+            </span>
+            <span class="txt">
+                <b>直播贴片</b>
+                <i>选模板填字，一键出图就能开播</i>
+            </span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+    </div>
+
+    <footer class="foot">
+        <div class="ln"></div>
+        点开对应卡片就能用，有问题找魏杰<br />
+        更新于 2026-11-09
+    </footer>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+        (function (el, idx) {
+            setTimeout(function () { el.classList.add('in'); }, 90 + idx * 85);
+        })(cards[i], i);
+    }
+
+    var btn = document.getElementById('cpBtn');
+    var toast = document.getElementById('toast');
+    var wxid = 'yueboguoji1238';
+    function tip(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(tip._t);
+        tip._t = setTimeout(function () { toast.classList.remove('show'); }, 2000);
+    }
+    function copy() {
+        var done = false;
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(wxid);
+                done = true;
+            }
+        } catch (e) {}
+        if (!done) {
+            var ta = document.createElement('textarea');
+            ta.value = wxid;
+            ta.style.position = 'fixed';
+            ta.style.top = '-1000px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); done = true; } catch (e) {}
+            document.body.removeChild(ta);
+        }
+        tip(done ? '微信号已复制，去微信添加好友' : '微信号：' + wxid);
+    }
+    if (btn) { btn.addEventListener('click', copy); }
+})();
+</script>
+</body>
+</html>
